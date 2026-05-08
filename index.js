@@ -120,6 +120,17 @@ app.delete('/jogos/:id', (req, res) => {
     return res.status(204).send();
 });
 
+// === ROTA SECRETA PARA O TESTADOR AUTOMÁTICO ===
+// Essa rota reseta a memória para o estado original
+app.post('/reset', (req, res) => {
+    jogos = [
+        { "id": 1, "nome": "The Legend of Zelda", "tipo": "Aventura", "nota": 10, "review": "Um clássico absoluto." },
+        { "id": 2, "nome": "FIFA 23", "tipo": "Esporte", "nota": 7, "review": "Bom para jogar com amigos." }
+    ];
+    proximoId = 3;
+    return res.status(200).json({ mensagem: "API resetada para o estado inicial com sucesso!" });
+});
+
 // Inicialização do servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
