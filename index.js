@@ -6,7 +6,7 @@ app.use(express.json()); // Permite que a API entenda JSON no body
 
 // === ROTA DE LOGIN ===
 app.post('/login', (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.body || {};
 
     // Regra da atividade: verificar credenciais exatas
     if (email === "usuario@esoft.com" && password === "Abc123") {
@@ -47,7 +47,7 @@ app.get('/jogos', (req, res) => {
 // === ROTA: POST /jogos ===
 // Cadastra uma nova review
 app.post('/jogos', (req, res) => {
-    const { nome, tipo, nota, review } = req.body;
+    const { nome, tipo, nota, review } = req.body || {};
 
     // Validação para retornar 400 Bad Request se faltar algo
     if (!nome || !tipo || nota === undefined || !review) {
@@ -84,7 +84,7 @@ app.get('/jogos/:id', (req, res) => {
 // Atualiza todos os dados de um jogo
 app.put('/jogos/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    const { nome, tipo, nota, review } = req.body;
+    const { nome, tipo, nota, review } = req.body || {};
 
     // A regra exige que todos os campos sejam preenchidos
     if (!nome || !tipo || nota === undefined || !review) {
