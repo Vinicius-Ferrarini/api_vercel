@@ -1,7 +1,10 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
+const cors = require('cors'); // Adicione esta linha junto com os outros requires
 
 const app = express();
+
+app.use(cors()); 
 app.use(express.json()); // Permite que a API entenda JSON no body
 
 // === ROTA DE LOGIN ===
